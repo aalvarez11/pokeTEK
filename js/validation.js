@@ -20,25 +20,12 @@ function init(){
     // attach listener to the form submit button
     elements.formElement.addEventListener("submit", validateForm);
     // we can listen on every letter...
-    elements.passwordRepeatInp.addEventListener("keyup", onPasswordRepeatLetter);
+    // elements.passwordRepeatInp.addEventListener("keyup", onPasswordRepeatLetter);
 }
 
 function onPasswordRepeatLetter(event){
     console.log(event.currentTarget);
     // check against other password
-    // grab text from first password input and second password input
-    const pwText = elements.passwordInp.value;
-    const pwTextRe = elements.passwordRepeatInp.value;
-    // compare them and display text if they do not match
-    let pwReLength = pwTextRe.length;
-    console.log(pwText.slice(0, pwReLength), pwTextRe);
-    if (pwText.slice(0, pwReLength) === pwTextRe){
-        console.log("Its a match");
-        elements.formMessageElement.innerText = "";
-    } else {
-        // no match, display error msg
-        elements.formMessageElement.innerText = "The second password does not match the first";
-    }
 }
 
 function validateForm(event){
@@ -54,8 +41,7 @@ function validateForm(event){
         // update the DOM with an error message
         elements.formMessageElement.innerText = validationText;
     } else {
-        elements.formMessageElement.innerText = "";
-        alert("Form data looks OK");
+        prompt("Form data looks OK");
     }
 }
 
