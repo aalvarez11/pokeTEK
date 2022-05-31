@@ -26,6 +26,19 @@ function init(){
 function onPasswordRepeatLetter(event){
     console.log(event.currentTarget);
     // check against other password
+    // grab text from first password input and second password input
+    const pwText = elements.passwordInp.value;
+    const pwTextRe = elements.passwordRepeatInp.value;
+    // compare them and display text if they do not match
+    let pwReLength = pwTextRe.length;
+    console.log(pwText.slice(0, pwReLength), pwTextRe);
+    if (pwText.slice(0, pwReLength) === pwTextRe){
+        console.log("Its a match");
+        elements.formMessageElement.innerText = "";
+    } else {
+        // no match, display error msg
+        elements.formMessageElement.innerText = "The second password does not match the first";
+    }
 }
 
 function validateForm(event){
