@@ -58,6 +58,7 @@ function createPokemonCard(pokemon) {
   pokeListItem.classList.add("poke-list-item");
 
   // Fix for capitalizing first letter
+  const dexNumber = pokemon.species.url.split("/")[6];
   const pokeName = (pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1));
   const pokeImg = pokemon.sprites.front_default;
   const pokeTypes = pokemon.types.map(el => el.type.name);
@@ -65,6 +66,7 @@ function createPokemonCard(pokemon) {
   // Build out the html for the item
   const pokeInnerHTML = `
     <div class="info-container">
+        <h2>#${dexNumber}</h2>
         <h2>${pokeName}</h2>
         <p>type: ${pokeTypes}</p>
     </div>
@@ -151,10 +153,12 @@ async function getAllPokemonByType(type) {
         if (pokePromRes.sprites.front_default) {
           pokemon.push(pokePromRes);
           createPokemonCard(pokePromRes);
+          pokemon.sort();
         }
       });
     }
-    return pokemon;
+    let dex = pokemon.sort();
+    return dex;
   } catch (error) {
     loading.style.opacity = '0';
   }
